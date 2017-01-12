@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteCond $1 !^(index.php|css|fonts|js|images)
+RewriteRule ^(.*)$ /app_cadp_backend/index.php/$1 [L]
+<FilesMatch ".(eot|ttf|otf|woff)">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>

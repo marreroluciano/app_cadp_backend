@@ -1,3 +1,7 @@
+<?php 
+  $attributes = array('class' => 'form-horizontal', 'id'=>'form');  
+  echo form_open('', $attributes);
+?>
 <div class="row">
   <div class="col-xs-4">
 
@@ -22,7 +26,7 @@
   <div class="form-group form-group-sm">
     <label for="clave" class="col-sm-4 control-label"></label>
     <div class="col-sm-8">
-      <button type="submit" class="btn btn-login" data-toggle="tooltip" title="Ingresar al Sistema"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</button>
+      <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Ingresar al Sistema"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</button>
     </div>
   </div>
 
@@ -31,3 +35,4 @@
   <div class="col-xs-4"> </div>
   <div class="col-xs-4"> </div>
 </div>
+<?=form_close(); ?>

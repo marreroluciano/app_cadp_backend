@@ -1,8 +1,7 @@
 <?php
   class Sign_in extends CI_Controller {
-    function __construct(){
-      parent::__construct(); 
-      $this->load->helper('url');
+    function __construct(){      
+      parent::__construct();      
       $this->load->model('user_teacher_model');
       $this->load->library('session');
     }
