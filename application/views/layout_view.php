@@ -5,10 +5,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">  
 
+  <!-- JS -->
+  <script src="<?php echo base_url()?>js/jquery.min.js"></script>
+  <script src="<?php echo base_url()?>js/functions.js"></script>
+  <script src="<?php echo base_url()?>js/alertify.min.js"></script>
+  <script src="<?php echo base_url()?>js/bootstrap.min.js"></script>
+
   <!-- CSS -->
   <link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap/css/bootstrap.min.css" type="text/css"/>
   <link rel="stylesheet" href="<?php echo base_url()?>css/main.css" type="text/css"/>
   <link rel="stylesheet" href="<?php echo base_url()?>css/font-awesome.min.css" type="text/css"/>
+  <link rel="stylesheet" href="<?php echo base_url()?>css/alertify.min.css" type="text/css"/>  
   
   <title>CADP - Administraci&oacute;n</title>
 </head>

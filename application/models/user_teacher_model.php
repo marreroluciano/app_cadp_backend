@@ -8,8 +8,15 @@
     }
 
     /* verifica si hay una sesión iniciada */
-    public function isLogin() {     
+    function isLogin() {     
       return (isset($this->session->userdata['user']));
+    }
+
+    /* obtiene el usuario con el nombre de usuario recibido */
+    function get_user_username($user_name){
+      $this->db->where('user',$user_name);
+      $query = $this->db->get('user_teacher');
+      return($query->result());
     }
 
     
