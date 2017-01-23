@@ -8,17 +8,19 @@
     }
       
    function index () {
-     if (!$this->user_teacher_model->isLogin()) {
-       $data_layout["title"]   = "CADP - Sistema de administraci&oacute;n";
+     if (!$this->user_teacher_model->isLogin()) {       
        $data_layout["content"] = $this->load->view('sign_in/sign_in_view', '', true);
        $this->load->view('layout_view', $data_layout);
       } else {
          $teacher = $this->teacher_model->get_teacher($this->session->userdata['teacher_id']);
          $data_view['teacher'] = $teacher;
 
-         $data_layout["title"] = "CADP - Sistema de administraci&oacute;n";
-         $data_layout["user_menu"] = $this->load->view('user/menu_view', '', true);
-         $data_layout["content"] = $this->load->view('user/user_initial_view', $data_view, true);
+         $data_menu_view['controller'] = '';
+         $data_menu_view['method'] = '';
+         $data_menu_view['result_id'] = '';
+         
+         $data_layout["user_menu"] = $this->load->view('user/menu_view', $data_menu_view, true);
+         $data_layout["content"] = $this->load->view('user/index', $data_view, true);
          $this->load->view('layout_view', $data_layout);
       }
    }
@@ -36,14 +38,16 @@
          $this->session->set_userdata($data_session);
 
          $data_view['teacher'] = $teacher;
+         
+         $data_menu_view['controller'] = '';
+         $data_menu_view['method'] = '';
+         $data_menu_view['result_id'] = '';
 
-         $data_layout["title"] = "CADP - Sistema de administraci&oacute;n";
-         $data_layout["user_menu"] = $this->load->view('user/menu_view', '', true);
-         $data_layout["content"] = $this->load->view('user/user_initial_view', $data_view, true);
+         $data_layout["user_menu"] = $this->load->view('user/menu_view', $data_menu_view, true);
+         $data_layout["content"] = $this->load->view('user/index', $data_view, true);
          $this->load->view('layout_view', $data_layout);
        } else {
-         $data_view['alert'] = '<script type="text/javascript"> alertify.error(\'<i class="fa fa-thumbs-down" aria-hidden="true"></i> Usuario y/o contraseña incorrectos.\'); </script>';         
-         $data_layout["title"] = "CADP - Sistema de administraci&oacute;n";         
+         $data_view['alert'] = '<script type="text/javascript"> alertify.error(\'<i class="fa fa-thumbs-down" aria-hidden="true"></i> Usuario y/o contraseña incorrectos.\'); </script>';                
          $data_layout["content"] = $this->load->view('sign_in/sign_in_view', $data_view, true);
          $this->load->view('layout_view', $data_layout);
        }       

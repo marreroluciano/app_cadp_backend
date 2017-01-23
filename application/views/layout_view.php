@@ -15,7 +15,11 @@
   <link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap/css/bootstrap.min.css" type="text/css"/>
   <link rel="stylesheet" href="<?php echo base_url()?>css/main.css" type="text/css"/>
   <link rel="stylesheet" href="<?php echo base_url()?>css/font-awesome.min.css" type="text/css"/>
-  <link rel="stylesheet" href="<?php echo base_url()?>css/alertify.min.css" type="text/css"/>  
+  <link rel="stylesheet" href="<?php echo base_url()?>css/alertify.min.css" type="text/css"/>
+
+  <script type="text/javascript">  
+    $(document).ready(function(){ $('[data-toggle="tooltip"]').tooltip();});  
+  </script>
   
   <title>CADP - Administraci&oacute;n</title>
 </head>
