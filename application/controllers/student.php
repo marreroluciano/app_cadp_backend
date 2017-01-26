@@ -4,6 +4,9 @@
       parent::__construct();
       $this->load->model('user_teacher_model');
       $this->load->model('student_model');
+      $this->load->model('request_model');
+      $this->load->model('Student_attendance_list_model');
+      $this->load->model('Student_evaluation_mark_model');      
       $this->load->library('session');
     }
       
@@ -96,6 +99,28 @@
        $output.= '</script>';
        echo $output;
      } else { redirect(base_url().'error_404', 'refresh'); }
+   }
+
+   function view($student_id){
+    if ($this->user_teacher_model->isLogin()) {
+      $student = $this->student_model->get_student($student_id);
+      $student_requests = $this->request_model->get_student_requests($student_id);
+      $student_absents = $this->Student_attendance_list_model->get_student_absents($student_id);
+      $student_evaluations = $this->Student_evaluation_mark_model->get_student_evaluations($student_id);      
+
+      $data_view['student'] = $student;
+      $data_view['student_requests'] = $student_requests;
+      $data_view['student_absents'] = $student_absents;
+      $data_view['student_evaluations'] = $student_evaluations;
+
+      $data_menu_view['controller'] = '';
+      $data_menu_view['method'] = '';
+      $data_menu_view['result_id'] = '';
+
+      $data_layout["user_menu"] = $this->load->view('user/menu_view', $data_menu_view, true);
+      $data_layout["content"] = $this->load->view('student/view', $data_view, true);
+      $this->load->view('layout_view', $data_layout);
+    }
    }
 }
 ?> 

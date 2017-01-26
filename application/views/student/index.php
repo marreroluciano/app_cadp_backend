@@ -16,14 +16,14 @@
 
   <table class="table table-hover table table-condensed">
   <thead>
-    <tr>      
+    <tr>
       <th><small>DNI</small></th>
-      <th><small>Legajo</small></th>      
+      <th><small>Legajo</small></th>
       <th><small>Alumno</small></th>
       <th><small>Turno</small></th>
       <th><small>Promoci&oacute;n</small></th>
       <th><small>Inasistencias</small></th>
-      <th><small>Acci&oacute;n</small></th>      
+      <th><small>Acci&oacute;n</small></th>
     </tr>
   </thead>
   <tbody id="result_list">
