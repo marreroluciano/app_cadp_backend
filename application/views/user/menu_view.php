@@ -20,7 +20,7 @@
             <li class="dropdown" id="administration">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i> Administraci&oacute;n<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li id="student" data-toggle="tooltip" title="Alumnos"><a href="<?php echo base_url();?>student/"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumnos</a></li>
+                <li id="student" data-toggle="tooltip" title="Alumnos"><a href="<?=base_url();?>student/"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumnos</a></li>
                 <li id="teacher" data-toggle="tooltip" title="Docentes"><a href=""><i class="fa fa-users" aria-hidden="true"></i> Docentes</a></li>
                 <li id="turn" data-toggle="tooltip" title="Turnos"><a href=""><i class="fa fa-clock-o" aria-hidden="true"></i> Turnos</a></li>
               </ul>
@@ -31,7 +31,7 @@
             <li class="dropdown" id="menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i> Men&uacute;<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li id="request" data-toggle="tooltip" title="Solicitudes"><a href=""><i class="fa fa-inbox" aria-hidden="true"></i> Solicitudes</a></li>
+                <li id="request" data-toggle="tooltip" title="Solicitudes"><a href="<?=base_url();?>request/"><i class="fa fa-inbox" aria-hidden="true"></i> Solicitudes</a></li>
                 <li id="absent" data-toggle="tooltip" title="Inasistencias"><a href=""><i class="fa fa-calendar-times-o" aria-hidden="true"></i> Inasistencias</a></li>
                 <li id="evaluation" data-toggle="tooltip" title="Evaluaciones"><a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Evaluaciones</a></li>             
               </ul>

@@ -15,5 +15,24 @@
       $query = $this->db->get('request');
       return($query->result());
     }
+
+    /* obtiene el total de solicitudes */
+    function get_total_request(){
+      return ($this->db->get('request')->num_rows());
+    }
+
+    /* obtiene las solicitudes */
+    function get_requests($start, $limit) {
+      $this->db->select('request.id, date, student.surname_and_name, turn.detail as turn, type_request.detail as type_request, request_state.class as request_state_class, request_state.detail as state');
+      $this->db->join('student', 'student.id = request.student_id');
+      $this->db->join('type_request', 'type_request.id = request.id_request_type');
+      $this->db->join('turn', 'turn.id = request.current_turn');
+      $this->db->join('request_state', 'request_state.id = request.id_request_state');
+      $this->db->join('teacher', 'teacher.id = request.teacher_id', 'left');
+      $this->db->order_by("date", "desc");
+      $this->db->limit($limit, $start);
+      $query = $this->db->get('request');
+      return($query->result());
+    }
 }
 ?> 

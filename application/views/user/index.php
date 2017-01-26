@@ -16,7 +16,7 @@
       </div>
     </div>   
 
-      <a href="<?php echo base_url();?>student/" data-toggle="tooltip" title="Listado de alumnos">
+      <a href="<?=base_url();?>student/" data-toggle="tooltip" title="Listado de alumnos">
       <div class="panel-footer">
         <span class="pull-left">Listado de alumnos</span>
         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>    
-    <a href="" data-toggle="tooltip" title="Solicitudes">
+    <a href="<?=base_url();?>request/" data-toggle="tooltip" title="Solicitudes">
     <div class="panel-footer">
       <span class="pull-left">Solicitudes</span>
       <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
