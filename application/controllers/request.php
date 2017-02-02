@@ -56,5 +56,67 @@
        $this->load->view('layout_view', $data_layout);
      }
    }
+
+   function view(){
+     if ($this->user_teacher_model->isLogin()) {
+       $request_id = $this->input->post('element_id');
+       $request = $this->request_model->get_request($request_id);
+
+
+       $output = '<div class="row">'; 
+       $output.= '<div class="col-xs-6">';
+       $output.= '<ul class="list-group">';
+
+       $output.= '<li class="list-group-item"><small><strong>Tipo de solicitud: </strong>'.$request[0]->type_request_detail.'</small></li>';
+
+       switch ($request[0]->id_request_type) {
+         case 1:
+           $output.= '<li class="list-group-item"><small><strong>Turno actual: </strong>'.$request[0]->current_turn.'</small></li>';
+           $output.= '<li class="list-group-item"><small><strong>Turno solicitado: </strong>'.$request[0]->requested_shift.'</small></li>';
+           $output.= '<li class="list-group-item"><small><strong>Motivo: </strong>'.$request[0]->reason.'</small></li>';
+         break;
+         case 2:
+           $date = date_create($request[0]->start_date_justification);
+           $date = date_format($date, 'd/m/Y');
+           $output.= '<li class="list-group-item"><small><strong>Fecha desde: </strong>'.$date.'</small></li>';
+           $date = date_create($request[0]->end_date_justification);
+           $date = date_format($date, 'd/m/Y');
+           $output.= '<li class="list-group-item"><small><strong>Fecha hasta: </strong>'.$date.'</small></li>';
+         break;
+       }
+       
+       $output.= '</ul>';
+       $output.= '</div>';
+       $output.= '<div class="col-xs-6">';
+
+       $output.= '<div id="links">';
+       $output.= '<a href="'.base_url().'images/uploads/'.$request[0]->attached.'" data-toggle="tooltip" title="Certificado" data-gallery>';
+       $output.= '<img src="'.base_url().'images/uploads/'.$request[0]->attached.'" alt="Certificado" class="img-rounded img-responsive center-block" width="50%"/>';
+       $output.= '</a>';
+       $output.= '</div>';
+
+       $output.= '</div>';       
+
+       $output.= '</div>';
+
+       $output.= '<div class="row">'; 
+       $output.= '<div class="col-xs-12">';
+
+       $output.= '<button class="btn btn-success" data-toggle="tooltip" title="Aceptar solicitud" onclick="confirm(\''.base_url().'\')"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Aceptar solicitud </button>';
+       $output.= '&nbsp;';
+       $output.= '<button class="btn btn-danger" data-toggle="tooltip" title="Rechazar solicitud" onclick="confirm(\''.base_url().'\')"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Rechazar solicitud </button>';
+
+       $output.= '</div>';
+       $output.= '</div>';
+
+       $output.= '<script type="text/javascript">';
+       $output.= '$(document).ready(function(){';
+       $output.= '$(\'[data-toggle="tooltip"]\').tooltip();';
+       $output.= '});';
+       $output.= '</script>';
+
+       echo $output;
+     }
+   }
 }
 ?> 

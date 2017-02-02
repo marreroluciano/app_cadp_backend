@@ -10,15 +10,24 @@
   <script src="<?php echo base_url()?>js/functions.js"></script>
   <script src="<?php echo base_url()?>js/alertify.min.js"></script>
   <script src="<?php echo base_url()?>js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url()?>js/jquery.blueimp-gallery.min.js"></script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap/css/bootstrap.min.css" type="text/css"/>
+  <link rel="stylesheet" href="<?php echo base_url()?>css/alertify.min.css" type="text/css"/>
+  <link rel="stylesheet" href="<?php echo base_url()?>css/semantic.min.css" type="text/css"/>
+  <link rel="stylesheet" href="<?php echo base_url()?>css/default.min.css" type="text/css"/>  
+  <link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap/css/bootstrap.min.css" type="text/css"/>  
   <link rel="stylesheet" href="<?php echo base_url()?>css/main.css" type="text/css"/>
   <link rel="stylesheet" href="<?php echo base_url()?>css/font-awesome.min.css" type="text/css"/>
-  <link rel="stylesheet" href="<?php echo base_url()?>css/alertify.min.css" type="text/css"/>
+  <link rel="stylesheet" href="<?php echo base_url()?>css/blueimp-gallery.min.css" type="text/css"/>
 
   <script type="text/javascript">  
-    $(document).ready(function(){ $('[data-toggle="tooltip"]').tooltip();});  
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+      alertify.defaults.theme.input = "form-control";      
+      alertify.defaults.glossary.ok = '<span class="glyphicon glyphicon-ok"></span> Aceptar';
+      alertify.defaults.glossary.cancel = '<span class="glyphicon glyphicon-remove"></span> Cancelar';      
+    });    
   </script>
   
   <title>CADP - Administraci&oacute;n</title>

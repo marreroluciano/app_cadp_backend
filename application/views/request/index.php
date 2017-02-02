@@ -34,8 +34,8 @@
       <td><small><?=$value->turn;?></small></td>
       <td><small><?=$value->type_request;?></small></td>
       <td><i class="<?=$value->request_state_class; ?>" aria-hidden="true" data-toggle="tooltip" title="<?=$value->state; ?>"></i></td>      
-      <td><small>
-        <a href="<?=base_url();?>request/view/<?=$value->id; ?>"><button type="button" class="btn btn-info btn-xs" data-toggle="tooltip" title="M&aacute;s informaci&oacute;n"><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>
+      <td><small>        
+        <button type="button" class="btn btn-info btn-xs" data-toggle="tooltip" title="M&aacute;s informaci&oacute;n" onclick="view('<?=base_url();?>', 'request', 'view', <?=$value->id;?>, 'view', 'modal_view')"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
       </small></td>
     </tr>  
   <?php } /* end del foreach */ ?> 
@@ -50,6 +50,39 @@
   <?=$pagination; ?>
 </div>
 </div>
+
+
+<div id="blueimp-gallery" class="blueimp-gallery">
+<div class="slides"></div>
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal para la vista de una solicitud -->
+<a data-toggle="modal" href="#running_operation" id="modal_view" style="display: none"></a>
+<div class="modal fade" id="running_operation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_modal_running_operation">&times;</button>
+        <h5 class="modal-title"><strong>Datos de la solicitud</strong></h5>
+      </div>
+      <div class="modal-body" id="view">        
+        
+      </div>        
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -69,3 +102,6 @@
     $('#search').show('slow');
   });
 </script>
+
+
+
