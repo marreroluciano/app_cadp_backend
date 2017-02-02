@@ -20,7 +20,7 @@ function search(url, controller, method, length, result_id){
     $.ajax({
       data:  parameters,
       url:   url+'index.php/'+controller+'/'+method,
-      type:  'post',    
+      type:  'post',
       beforeSend: function () {
         $("#"+result_id).html('B&uacute;scando, espere por favor...');
         //$( "#"+modal_before_id ).trigger( "click" );
@@ -33,4 +33,38 @@ function search(url, controller, method, length, result_id){
   } else {
       alertify.error('<i class="fa fa-thumbs-down" aria-hidden="true"></i> La cadena a buscar debe contener al menos 3 caracteres.');
   }
+}
+
+/* visualiza por ajax los datos de una solicitud */
+function view(url, controller, method, element_id, result_id, modal_view_id){
+  var parameters = {
+    "element_id": element_id    
+  };
+  $.ajax({
+      data:  parameters,
+      url:   url+'index.php/'+controller+'/'+method,
+      type:  'post',
+      beforeSend: function () {        
+      },
+      success:  function (response) {
+        $("#"+result_id).html(response);
+        $( "#"+modal_view_id ).trigger( "click" );
+      }
+    });
+}
+
+function confirm (url) {
+  /*alertify.defaults.theme.input = "form-control";
+  alertify.defaults.glossary.ok = '<span class="glyphicon glyphicon-ok"></span> Aceptar';
+  alertify.defaults.glossary.cancel = '<span class="glyphicon glyphicon-remove"></span> Cancelar';*/
+  alertify.defaults.glossary.title = "<strong>Confirmar operaci&oacute;n</strong>";
+
+  alertify.confirm('Confirme la opeaci&oacute;n a realizar', function (e) {
+           if (e) {
+             alert('entreeeeee');
+           }
+  }).set('modal', true);
+  
+  //alert(url);
+
 }
