@@ -33,7 +33,7 @@
       <td><small><?=$value->surname_and_name;?></small></td>
       <td><small><?=$value->turn;?></small></td>
       <td><small><?=$value->type_request;?></small></td>
-      <td><i class="<?=$value->request_state_class; ?>" aria-hidden="true" data-toggle="tooltip" title="<?=$value->state; ?>"></i></td>      
+      <td id="state_class_<?=$value->id;?>"><i class="<?=$value->request_state_class; ?>" aria-hidden="true" data-toggle="tooltip" title="<?=$value->state; ?>"></i></td>      
       <td><small>        
         <button type="button" class="btn btn-info btn-xs" data-toggle="tooltip" title="M&aacute;s informaci&oacute;n" onclick="view('<?=base_url();?>', 'request', 'view', <?=$value->id;?>, 'view', 'modal_view')"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
       </small></td>

@@ -59,11 +59,14 @@
 
    function view(){
      if ($this->user_teacher_model->isLogin()) {
+       $this->db->trans_start();
+
        $request_id = $this->input->post('element_id');
        $request = $this->request_model->get_request($request_id);
+       $data = array('id_request_state' => 4);
+       $request_state = $this->request_model->update($request_id, $data);
 
-
-       $output = '<div class="row">'; 
+       $output = '<div class="row">';
        $output.= '<div class="col-xs-6">';
        $output.= '<ul class="list-group">';
 
@@ -111,12 +114,14 @@
 
        $output.= '<script type="text/javascript">';
        $output.= '$(document).ready(function(){';
+       $output.= '$("#state_class_'.$request_id.'").html("<i class=\'fa fa-cog text-warning\' aria-hidden=\'true\' data-toggle=\'tooltip\' title=\'EN PROCESO\'></i>");';
        $output.= '$(\'[data-toggle="tooltip"]\').tooltip();';
        $output.= '});';
        $output.= '</script>';
 
+       $this->db->trans_complete();
        echo $output;
-     }
+     } else { /* página 404 */ }
    }
 }
 ?> 

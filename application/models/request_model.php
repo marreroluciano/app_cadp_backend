@@ -46,5 +46,11 @@
       $query = $this->db->get('request');
       return($query->result());
     }
+
+    /* actualiza los datos de una solicitud */
+    function update ($request_id, $data){
+      $this->db->where('id', $request_id);
+      $this->db->update('request', $data);
+    }
 }
 ?> 
