@@ -48,23 +48,35 @@ function view(url, controller, method, element_id, result_id, modal_view_id){
       },
       success:  function (response) {
         $("#"+result_id).html(response);
-        $( "#"+modal_view_id ).trigger( "click" );
+        $("#"+modal_view_id ).trigger( "click" );
       }
     });
 }
 
-function confirm (url) {
-  /*alertify.defaults.theme.input = "form-control";
-  alertify.defaults.glossary.ok = '<span class="glyphicon glyphicon-ok"></span> Aceptar';
-  alertify.defaults.glossary.cancel = '<span class="glyphicon glyphicon-remove"></span> Cancelar';*/
+/* mensaje genérico de confirmación de alertify */
+function confirm (url, controller, method, data, result_id) {  
   alertify.defaults.glossary.title = "<strong>Confirmar operaci&oacute;n</strong>";
-
   alertify.confirm('Confirme la opeaci&oacute;n a realizar', function (e) {
            if (e) {
-             alert('entreeeeee');
+             ajax(url, controller, method, data, result_id);
            }
   }).set('modal', true);
-  
-  //alert(url);
+}
 
+/* ajax genérico */
+function ajax (url, controller, method, data, result_id) {  
+  var parameters = {
+    "data": data
+  };
+  $.ajax({
+    data: parameters,
+    url: url+'index.php/'+controller+'/'+method,
+    type: 'post',
+    beforeSend: function () {
+
+    },
+    success:  function (response) {
+      $("#"+result_id).html(response);
+    }
+  });
 }

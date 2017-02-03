@@ -83,6 +83,9 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div id="result">
+</div>
+
 
 <script type="text/javascript">
   $(document).ready(function(){

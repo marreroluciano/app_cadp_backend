@@ -105,7 +105,10 @@
        $output.= '<div class="row">'; 
        $output.= '<div class="col-xs-12">';
 
-       $output.= '<button class="btn btn-success" data-toggle="tooltip" title="Aceptar solicitud" onclick="confirm(\''.base_url().'\')"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Aceptar solicitud </button>';
+       $data =  array('request_id' => $request_id);
+       $data = implode(",", $data);
+
+       $output.= '<button class="btn btn-success" data-toggle="tooltip" title="Aceptar solicitud" onclick="confirm(\''.base_url().'\', \'request\', \'accept\', \''.$data.'\', \'result\')"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Aceptar solicitud </button>';
        $output.= '&nbsp;';
        $output.= '<button class="btn btn-danger" data-toggle="tooltip" title="Rechazar solicitud" onclick="confirm(\''.base_url().'\')"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Rechazar solicitud </button>';
 
@@ -122,6 +125,16 @@
        $this->db->trans_complete();
        echo $output;
      } else { /* página 404 */ }
+   }
+
+   function accept (){
+    if ((empty($_POST ) != true) && ($this->user_teacher_model->isLogin())) {
+      $request_id = $this->input->post('data');
+      $data = array('id_request_state' => 2);
+      $request = $this->request_model->update($request_id, $data);
+
+      echo $request;
+    }      
    }
 }
 ?> 
