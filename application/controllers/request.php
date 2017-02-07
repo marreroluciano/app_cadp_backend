@@ -108,7 +108,7 @@
        $output.= '<div class="col-xs-12">';
 
        $data =  array('request_id' => $request_id);
-       $data = implode(",", $data);
+       $data = implode(",", $data);              
 
        $output.= '<button class="btn btn-success" data-toggle="tooltip" title="Aceptar solicitud" onclick="confirm(\''.base_url().'\', \'request\', \'accept\', \''.$data.'\', \'result\', \'close_modal_running_operation\')"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Aceptar solicitud </button>';
        $output.= '&nbsp;';
@@ -147,7 +147,8 @@
         $output.= '$("#state_class_'.$request_id.'").html("<i class=\'fa fa-thumbs-o-up text-success\' aria-hidden=\'true\' data-toggle=\'tooltip\' title=\'ACEPTADA\'></i>");';
       } else {
         $output.= 'alertify.error(\'<i class="fa fa-thumbs-down" aria-hidden="true"></i> La solicitud no pudo ser aceptada.\');';
-      }      
+      }
+      $output.= '$(\'[data-toggle="tooltip"]\').tooltip();';
       $output.= '});';
       $output.= '</script>';
       echo $output;
@@ -168,6 +169,7 @@
       } else {
         $output.= 'alertify.error(\'<i class="fa fa-thumbs-down" aria-hidden="true"></i> La solicitud no pudo ser denegada.\');';
       }
+      $output.= '$(\'[data-toggle="tooltip"]\').tooltip();';
       $output.= '});';
       $output.= '</script>';
       echo $output;
