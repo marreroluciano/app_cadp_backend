@@ -63,8 +63,10 @@
 
        $request_id = $this->input->post('element_id');
        $request = $this->request_model->get_request($request_id);
-       $data = array('id_request_state' => 4);
-       $request_state = $this->request_model->update($request_id, $data);
+       if ($request[0]->id_request_state == 1) {
+         $data = array('id_request_state' => 4);
+         $request_state = $this->request_model->update($request_id, $data);
+       }
 
        $output = '<div class="row">';
        $output.= '<div class="col-xs-6">';
@@ -108,16 +110,20 @@
        $data =  array('request_id' => $request_id);
        $data = implode(",", $data);
 
-       $output.= '<button class="btn btn-success" data-toggle="tooltip" title="Aceptar solicitud" onclick="confirm(\''.base_url().'\', \'request\', \'accept\', \''.$data.'\', \'result\')"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Aceptar solicitud </button>';
+       $output.= '<button class="btn btn-success" data-toggle="tooltip" title="Aceptar solicitud" onclick="confirm(\''.base_url().'\', \'request\', \'accept\', \''.$data.'\', \'result\', \'close_modal_running_operation\')"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Aceptar solicitud </button>';
        $output.= '&nbsp;';
-       $output.= '<button class="btn btn-danger" data-toggle="tooltip" title="Rechazar solicitud" onclick="confirm(\''.base_url().'\')"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Rechazar solicitud </button>';
+       $output.= '<button class="btn btn-danger" data-toggle="tooltip" title="Rechazar solicitud" onclick="confirm(\''.base_url().'\', \'request\', \'deny\', \''.$data.'\', \'result\', \'close_modal_running_operation\')"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Rechazar solicitud </button>';
 
        $output.= '</div>';
        $output.= '</div>';
 
        $output.= '<script type="text/javascript">';
        $output.= '$(document).ready(function(){';
-       $output.= '$("#state_class_'.$request_id.'").html("<i class=\'fa fa-cog text-warning\' aria-hidden=\'true\' data-toggle=\'tooltip\' title=\'EN PROCESO\'></i>");';
+
+       if ($request[0]->id_request_state == 1) {
+         $output.= '$("#state_class_'.$request_id.'").html("<i class=\'fa fa-cog text-warning\' aria-hidden=\'true\' data-toggle=\'tooltip\' title=\'EN PROCESO\'></i>");'; 
+       }
+       
        $output.= '$(\'[data-toggle="tooltip"]\').tooltip();';
        $output.= '});';
        $output.= '</script>';
@@ -133,8 +139,39 @@
       $data = array('id_request_state' => 2);
       $request = $this->request_model->update($request_id, $data);
 
-      echo $request;
+      /* Se arma la salida */
+      $output = '<script type="text/javascript">';
+      $output.= '$(document).ready(function(){';
+      if ($request > 0) {
+        $output.= 'alertify.success(\'<i class="fa fa-thumbs-up" aria-hidden="true"></i> Solicitud aceptada.\');';
+        $output.= '$("#state_class_'.$request_id.'").html("<i class=\'fa fa-thumbs-o-up text-success\' aria-hidden=\'true\' data-toggle=\'tooltip\' title=\'ACEPTADA\'></i>");';
+      } else {
+        $output.= 'alertify.error(\'<i class="fa fa-thumbs-down" aria-hidden="true"></i> La solicitud no pudo ser aceptada.\');';
+      }      
+      $output.= '});';
+      $output.= '</script>';
+      echo $output;
     }      
+   }
+
+   function deny () {
+    if ((empty($_POST ) != true) && ($this->user_teacher_model->isLogin())) {
+      $request_id = $this->input->post('data');
+      $data = array('id_request_state' => 3);
+      $request = $this->request_model->update($request_id, $data);
+      /* Se arma la salida */
+      $output = '<script type="text/javascript">';
+      $output.= '$(document).ready(function(){';
+      if ($request > 0) {
+        $output.= 'alertify.success(\'<i class="fa fa-thumbs-up" aria-hidden="true"></i> Solicitud ha sido denegada.\');';
+        $output.= '$("#state_class_'.$request_id.'").html("<i class=\'fa fa-thumbs-o-down text-danger\' aria-hidden=\'true\' data-toggle=\'tooltip\' title=\'ACEPTADA\'></i>");';
+      } else {
+        $output.= 'alertify.error(\'<i class="fa fa-thumbs-down" aria-hidden="true"></i> La solicitud no pudo ser denegada.\');';
+      }
+      $output.= '});';
+      $output.= '</script>';
+      echo $output;
+    }
    }
 }
 ?> 

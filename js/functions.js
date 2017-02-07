@@ -54,17 +54,17 @@ function view(url, controller, method, element_id, result_id, modal_view_id){
 }
 
 /* mensaje genérico de confirmación de alertify */
-function confirm (url, controller, method, data, result_id) {  
+function confirm (url, controller, method, data, result_id, id_modal_success) {  
   alertify.defaults.glossary.title = "<strong>Confirmar operaci&oacute;n</strong>";
   alertify.confirm('Confirme la opeaci&oacute;n a realizar', function (e) {
            if (e) {
-             ajax(url, controller, method, data, result_id);
+             ajax(url, controller, method, data, result_id, id_modal_success);
            }
   }).set('modal', true);
 }
 
 /* ajax genérico */
-function ajax (url, controller, method, data, result_id) {  
+function ajax (url, controller, method, data, result_id, id_modal_success) {  
   var parameters = {
     "data": data
   };
@@ -77,6 +77,8 @@ function ajax (url, controller, method, data, result_id) {
     },
     success:  function (response) {
       $("#"+result_id).html(response);
+      $( "#"+id_modal_success ).trigger( "click" );
+
     }
   });
 }
